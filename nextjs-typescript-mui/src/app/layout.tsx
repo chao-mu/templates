@@ -1,3 +1,6 @@
+// MUI
+import { CssBaseline } from "@mui/material";
+
 // Ours - Styles
 import "./global.css";
 import "@fontsource/roboto/300.css";
@@ -18,7 +21,10 @@ export default async function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Vite + React</title>
       </head>
-      <body>{children}</body>
+      <body>
+        <CssBaseline />
+        {children}
+      </body>
     </html>
   );
 }

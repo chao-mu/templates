@@ -10,10 +10,12 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 // NextAuth.js
 import type { Adapter } from "next-auth/adapters";
 
-function getEnv(key: string): string {
-  const value = process.env[key];
-  if (!value) {
+function getEnv(key: string, required: boolean): string {
+  let value = process.env[key];
+  if (!value && required) {
     throw new Error(`Missing environment variable: ${key}`);
+  } else {
+    value ??= "";
   }
 
   return value;
@@ -31,8 +33,8 @@ export const authOptions: NextAuthOptions = {
   adapter: DrizzleAdapter(db) as Adapter,
   providers: [
     DiscordProvider({
-      clientId: getEnv("DISCORD_CLIENT_ID"),
-      clientSecret: getEnv("DISCORD_CLIENT_SECRET"),
+      clientId: getEnv("DISCORD_CLIENT_ID", false),
+      clientSecret: getEnv("DISCORD_CLIENT_SECRET", false),
     }),
   ],
   callbacks: {
