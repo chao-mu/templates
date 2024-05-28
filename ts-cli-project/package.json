@@ -2,21 +2,29 @@
   "name": "cli-ts",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "esbuild src/index.ts --bundle --platform=node --outdir=dist --format=cjs --sourcemap",
+    "lint": "npx tsc --noEmit;  prettier --check .;  npx eslint --ignore-pattern dist",
+    "lint:fix": "npx prettier . --write; npx eslint --fix --ignore-pattern dist",
+    "build": "esbuild src/index.ts --bundle --platform=node --outdir=dist --format=cjs --sourcemap --target=node18",
     "precli": "npm run build",
-    "cli": "node --enable-source-maps ."
+    "cli": "node --enable-source-maps .",
+    "update-deps": "npx npm-check-updates -u"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^20.12.7",
-    "esbuild": "^0.20.2",
-    "esbuild-node-tsc": "^2.0.5",
-    "typescript": "^5.4.5"
+    "@eslint/js": "^9.3.0",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^20.12.12",
+    "esbuild": "^0.21.4",
+    "eslint": "^9.3.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^8.0.0-alpha.10"
   },
   "dependencies": {
     "@types/yargs": "^17.0.32",
