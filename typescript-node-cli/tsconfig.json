@@ -21,6 +21,6 @@
       "@": ["./src"]
     }
   },
-  "include": ["."],
-  "exclude": ["node_modules", "dist"]
+  "include": ["./src/**/*.js", "./src/**/*.ts", "*.json"],
+  "exclude": ["dist", "node_modules"]
 }
